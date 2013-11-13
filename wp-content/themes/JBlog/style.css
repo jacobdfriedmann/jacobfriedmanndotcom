@@ -1,514 +1,1 @@
-/*
-Theme Name: Jacob Friedmann
-Description: This is a Wordpress theme for Jacob Friedmann's blog
-Author: Jacob Friedmann
-Version: 3.0
-Color Palate: #434343 (font) #efeeee (light grey) #807e7e (dark grey) #59d4e7 (blue) #f694ff (pink) #ff8400 (orange) #12c200 (green)
-Fonts: headers 'M1clight' body 'M1cregular'
-*/
-
-/*
-Using JBoil:
-
-JBoil is designed to be used with the following plugins:
-
-1. Platinum SEO (or some other SEO package; no title, keyword, or description meta tags have been included).
-2. Next Generation Gallery (some files include shortcodes for this particular plugin; if you wish to use a different slider plugin, simply change those locations.) 
-*/
-
-/*   html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)  v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark  html5doctor.com/html-5-reset-stylesheet/*/
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, figure, footer, header, hgroup, menu, nav, section, menu,
-time, mark, audio, video {
-margin:0;
-padding:0;
-border:0;
-outline:0;
-font-size:100%;
-vertical-align:baseline;
-background:transparent;
-}
-article, aside, figure, footer, header,
-hgroup, nav, section { display:block; }
-nav ul { list-style:none; }
-blockquote, q { quotes:none; }
-blockquote:before, blockquote:after,
-q:before, q:after { content:''; content:none; }
-a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
-ins { background-color:#ff9; color:#000; text-decoration:none; }
-mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
-del { text-decoration: line-through; }
-abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
-/* tables still need cellspacing="0" in the markup */
-table { border-collapse:collapse; border-spacing:0; }
-hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
-input, select { vertical-align:middle; }
-/* END RESET CSS */
-
-/* Other Resets */
-
-/* align checkboxes, radios, text inputs with their label */
-input[type="radio"] { vertical-align: text-bottom; }
-input[type="checkbox"] { vertical-align: bottom; *vertical-align: baseline; }
-.ie6 input { vertical-align: text-bottom; }
-
-/* hand cursor on clickable input elements */
-label, input[type=button], input[type=submit], button { cursor: pointer; }
-a:hover, a:active { outline: none; }
-a, a:active, a:visited { color:#607890; }
-a:hover { color:#036; }
-
-.ie7 img { -ms-interpolation-mode: bicubic; }
-
-
-
-/* A message for users with JavaScript turned off */
-noscript strong {display: block; font-size: 18px; line-height:1.5em; padding: 5px 0; background-color: #ccc; color: #a00; text-align: center; }
-
-/* =Layout
--------------------------------------------------------------- */
-
-
-html { overflow-y: scroll; }
-
-
-/* =Fonts
--------------------------------------------------------------- */
-body {
-	font-family: helvetica, sans-serif;
-	font-size: 16px;
-	color: black;
-	font-weight:100;
-}
-
-h1 {
-	font-family: 'M1cthin', sans-serif;
-	font-size: 35px;
-	margin-bottom:20px;
-	font-weight:normal;
-	color: black !important;
-}
-
-h2 {
-	font-size: 25px;
-	font-weight:normal;
-}
-
-h3 {
-	font-size: 20px;
-	font-weight:normal;
-}
-
-#title {
-	font-size: 60px;
-}
-
-h2,h3,h4,h5 {
-	font-family: 'M1clight', sans-serif;
-	margin-bottom:15px;
-	font-weight:normal;
-}
-
-input[type="submit"], button, .button {
-	background-color: #efeeee;
-	border: 1px solid #807e7e;
-	font-family: "m1cregular";
-	padding: 6px 10px 4px;
-}
-
-input[type="text"] {
-	height: 19px;
-	font-family: "m1cregular";
-}
-
-blockquote {
-	margin: 0px 39px;
-	font-style: italic;
-}
-
-
-/* =Global Elements
--------------------------------------------------------------- */
-
-/* Main global 'theme' and typographic styles */
-
-ul {
-	list-style:none;
-}
-
-a, a:visited {
-	text-decoration:none;
-	color: rgb(56, 111, 165);
-}
-
-a:hover, a:active {
-	color:	rgb(4, 25, 173);
-}
-
-p {
-	margin-bottom:15px;
-}
-
-/* =Header
--------------------------------------------------------------- */
-#logo_container {
-	text-align:center;
-}
-
-#logo_wrapper {
-	background-color:#efeeee;
-	padding: 35px 0 9px;
-}
-
-#category_header_name {
-	color: white;
-}
-
-#category_header_container {
-	text-align:center;
-	padding-top:15px;
-}
-
-
-/* =Menu
--------------------------------------------------------------- */
-#main_nav {
-	overflow: hidden;
-    	text-align: justify;
-    	/* For IE6 to IE7 since they don't support :after */
-    	-ms-text-justify: distribute-all-lines; /* IE8+ */
-   	text-justify: distribute-all-lines; /* IE5+ */
-	margin:15px 0;
-	font-size: 23px;
-	font-family: 'M1clight', sans-serif;
-}
-
-#main_nav ul {
-	overflow: hidden;
-    	text-align: justify;
-}
-
-#main_nav a {
-	color:#2b2b2b;
-}
-
-#main_nav a:hover {
-	color: rgb(56, 111, 165);
-}
-
-
-#main_nav .filler {
-	display:inline-block;
-	width:100%;
-	height:0px;
-}
-
-#main_nav ul li {
-	display:inline-block;
-	*display:inline;
-	zoom:1;
-	cursor: pointer;
-	*text-align:center;
-	*position:relative;
-	text-align: left;
-}
-
-#main_nav ul li ul {
-	position:absolute;
-	*top:15px;
-	*left:0;
-	background: rgb(84, 40, 60);
-	background: rgba(84, 40, 60, .9);
-	background-position:center;
-	display:none;
-	z-index:1000;
-	min-width:150px;
-	
-}
-
-#main_nav ul li:hover ul {
-	display:block;
-}
-
-#main_nav ul li ul li {
-	display:block;
-	padding:5px 5px;
-}
-
-#main_nav ul li ul li a, #main_nav ul li ul li a:hover{
-	color:white;
-}
-
-#main_nav ul li ul li:hover {
-	background: rgb(205, 175, 149);
-	background: rgba(0, 0, 0, .2);
-}
-
-
-/* =Content
--------------------------------------------------------------- */
-
-.post_block {
-	position: relative;
-	width: 300px;
-	height: 300px;
-	overflow: hidden;
-	color:white !important;
-	cursor: pointer;
-	display: inline-block;
-	margin: 0 0px 25px 0px;
-}
-
-#main_message .post_block:nth-child(3n+2) {
-	margin: 0 25px 25px 25px;
-}
-
-.post_block a, .post_block a:hover {
-	color:white !important;
-}
- 
-.post_block img {
-	position: absolute;
-}
-
-.post_block_content {
-	display:none;
-	position: absolute;
-	top: 0;
-	padding: 10px;
-	height:300px;
-	width:280px;
-}
-
-
-.post_block:hover .post_block_content {
-	display:block;
-}
-
-.post_block_category {
-	position: absolute;
-	top: 267px;
-	font-size: 20px;
-	width: 280px;
-	text-align: center;
-}
-
-.entry {
-	margin:30px 0;
-	color:white;
-}
-
-#load-more-container {
-	text-align: center;
-	padding: 10px;
-	font-size: 16px;
-}
-
-#load-more {
-	cursor:pointer;
-}
-
-/* =Buckets
--------------------------------------------------------------- */
-.bucket {
-	text-align:center;
-}
-
-
-/* =Footer
--------------------------------------------------------------- */
-#footer_widget_wrapper {
-	background-color: #807e7e;
-	padding:50px 0;
-}
-
-#footer_wrapper {
-	background-color: #efeeee;
-	padding:20px;
-}
-
-#social_media_icons a:nth-child(3n+2) {
-	margin: 0 28px;
-}
-
-#social_media_icons {
-	width:300px;
-	float:left;
-}
-
-#tagline_area {
-	text-align: right;
-	color: #efeeee;
-	font-family: "m1cthin";
-	margin-top: 22px;
-	margin-right: 0px;
-	float:right;
-	
-}
-
-#tagline {
-	font-size: 33px;
-	text-align: right;	
-}
-
-#site_info {
-	text-align:right;
-	float:right;
-}
-
-#copyright {
-	float:left;
-}
-
-
-/* =Page/Single
--------------------------------------------------------------- */
-#sidebar {
-	width: 300px;
-	display: inline-block;
-	float: right;
-	margin-bottom:25px;
-}
-#content {
-	width: 630px;
-	display: inline-block;
-	margin-right: 25px;
-	float: left;
-	margin-bottom:25px;
-}
-
-#post_image_container {
-	text-align: center;
-	background-color: #efeeee;
-	padding: 10px 10px 5px;
-	margin-bottom:20px;
-}
-
-.entry-meta {
-	margin-bottom: 20px;
-	font-size: 12px;
-	font-family: "M1cregular";
-}
-
-.entry-content {
-	margin-bottom: 20px;
-}
-
-.entry-utility {
-	margin-bottom: 20px;
-	font-size: 12px;
-	font-family: "M1cregular";
-}
-
-#nav-below {
-	margin-bottom: 15px;
-}
-/* =Sidebar
--------------------------------------------------------------- */
-.widget-container {
-	margin-bottom:25px;
-}
-
-#s {
-	width: 49%;
-}
-
-.widget_list {
-	list-style: square;
-	margin-left: 17px;
-}
-
-.widget_list li {
-	margin-bottom:5px;
-}
-
-
-
-/* =Archives
--------------------------------------------------------------- */
-.hentry {
-	overflow: hidden;
-	margin-bottom: 20px;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #efeeee;
-	position: relative;
-}
-
-.hentry img {
-	float: left;
-	margin-right: 25px;
-}
-
-img.ajax-loader {
-	float: none;
-}
-
-.hentry .archive-utility {
-	position: absolute;
-	left: 275px;
-	bottom: -4px;
-}
-
-
-
-/* =Comments
--------------------------------------------------------------- */
-.commentlist {
-	list-style: none;
-	margin-bottom: 15px;
-}
-
-.commentlist > li.comment:nth-child(even) {
-	background-color: #efeeee;
-}
-
-.commentlist > li.comment:nth-child(odd) {
-	border: 1px solid rgb(207, 207, 207);
-}
-
-.commentlist li.comment {
-	padding: 10px;
-}
-
-.comment-meta {
-	font-size: 12px;
-	font-family: "M1cregular";
-	margin: 5px 0 20px;
-	padding: 1px 0 5px;
-	border-bottom: 1px solid rgb(207, 207, 207);
-}
-
-.commentlist .reply {
-	font-size: 12px;
-	font-family: "M1cregular";
-}
-	
-.children li.comment {
-	border-top: 1px solid #807e7e;
-	margin-top: 5px;
-}
-
-#respond {
-	margin-top: 15px;
-}
-
-/* =Widget Areas
--------------------------------------------------------------- */
-
-
-
-/* =Mobile Safari ( iPad, iPhone and iPod Touch )
--------------------------------------------------------------- */
-
-
-
-/* =Print Style
--------------------------------------------------------------- */
+/*Theme Name: Jacob FriedmannDescription: This is a Wordpress theme for Jacob Friedmann's blogAuthor: Jacob FriedmannVersion: 3.0Color Palate: #434343 (font) #efeeee (light grey) #807e7e (dark grey) #59d4e7 (blue) #f694ff (pink) #ff8400 (orange) #12c200 (green)Fonts: headers 'M1clight' body 'M1cregular'*//* A message for users with JavaScript turned off */noscript strong {display: block; font-size: 18px; line-height:1.5em; padding: 5px 0; background-color: #ccc; color: #a00; text-align: center; }/* =Layout-------------------------------------------------------------- */html { overflow-y: scroll; }/* =Fonts-------------------------------------------------------------- */body {	font-family: helvetica, sans-serif;	font-size: 16px;	color: black;	font-weight:100;}h1 {	font-family: 'M1cthin', sans-serif;	font-size: 35px;	margin-bottom:20px;	margin-top:0;	font-weight:normal;	color: black;}h2 {	font-size: 25px;	font-weight:normal;}h3 {	font-size: 20px;	font-weight:normal;}#title {	font-size: 60px;}h2,h3,h4,h5 {	font-family: 'M1clight', sans-serif;	margin-bottom:15px;	font-weight:normal;	margin-top:0;}input[type="submit"], button, .button {	font-family: "m1cregular";	padding: 6px 10px 4px;}input[type="text"] {	font-family: "m1cregular";}blockquote {	margin: 0px 39px;	font-style: italic;}/* =Global Elements-------------------------------------------------------------- */ul {	list-style:none;}a:hover {	text-decoration:none;}a, a:visited {	text-decoration:none;	color: rgb(56, 111, 165);}a:hover, a:active {	color:	rgb(4, 25, 173);}p {	margin-bottom:15px;}/* =Header-------------------------------------------------------------- */#jboil-logo-container {	text-align:center;}#jboil-logo-wrapper {	background-color:#efeeee;	padding: 35px 0 9px;	margin-top:0;	margin-bottom:0;}#jboil-category-header-name {	color: white;}#jboil-category-header-container {	text-align:center;	padding-top:15px;}/* =Menu-------------------------------------------------------------- */#jboil-main-navigation {	background: none;	border: none;	font-family: 'M1clight', sans-serif;	font-size: 23px;	box-shadow:none;	margin-bottom:10px;}#jboil-main-navigation a {	color:#2b2b2b;}#jboil-main-navigation-list {	padding-left:0;	padding-right:0;}.current-menu-item, .current-menu-parent {	background: #eee;}.navbar-toggle {	margin:10px 10px 0;	background: #fff;	position:relative;	z-index:10;}.navbar-brand {	background: #FF00FF;	padding-bottom: 15px;	padding-top: 17px;	position:relative;	z-index:10;}.navbar-header {	background: #eee;}.jboil-menu-page-title {	position: absolute;	top: 10px;	width: 100%;	margin-left: 15px;	text-align: center;	z-index:0;}@media (max-width: 768px) {	.navbar-header {		margin-left: -16px;		margin-right: -16px;	}	#jboil-main-navigation-list {		margin-left: -15px;		margin-right: -15px;	}}/* =Index Content-------------------------------------------------------------- */.jboil-post-block {	position: relative;	height: 300px;	overflow: hidden;	color:white !important;	cursor: pointer;	margin-bottom:30px;}.jboil-post-block a, .jboil-post-block a:hover {	color:white !important;}.jboil-index-thumb {	width:100%;	height:100%}.jboil-post-block-content {	display:none;	position: relative;	top: -100%;	padding: 10px;	height:100%;	width:100%;}.jboil-post-block:hover .jboil-post-block-content {	display:block;}.jboil-post-block-category {	position: absolute;	bottom: 0px;	font-size: 20px;	width: 94%;	text-align: center;}.entry {	margin:30px 0;	color:white;}#jboil-load-more-container {	text-align: center;	padding: 10px;	font-size: 16px;}#jboil-load-more {	cursor:pointer;}/* =Footer Widgets-------------------------------------------------------------- */#jboil-footer-widget-wrapper {	background-color: #807e7e;	padding:50px 0 5px;}.sprite-facebook{ 	background-position: 0 0; 	width: 78px; 	height: 78px; } .sprite-linkedin{ 	background-position: 0 -128px !important; 	width: 78px; 	height: 78px; } .sprite-twitter{ 	background-position: 0 -256px !important; 	width: 78px; 	height: 78px; } #jboil-social-media-icons a div {	height: 78px;	width: 78px;	background:url(img/sociallinks.png) no-repeat top left;	display:inline-block;}#jboil-social-media-icons .col-md-2{	text-align:center;}#jboil-tagline-area {	text-align:center;	color: #efeeee;	font-family: "m1cthin";	overflow:hidden;	line-height:90px;	}#jboil-tagline {	font-size: 25px;	}@media (min-width: 768px) {	#jboil-tagline {		font-size: 33px;		}}@media (min-width: 992px) {	#jboil-tagline-area {		text-align:right;		line-height:78px;	}	#jboil-tagline {		font-size: 25px;		}	#jboil-social-media-icons .col-md-2{		text-align:left;	}	#jboil-footer-widget-wrapper {		padding:50px 0 30px;	}}@media (min-width: 1200px) {	#jboil-tagline {		font-size: 33px;		}}/* =Footer Info-------------------------------------------------------------- */#jboil-footer-wrapper {	background-color: #efeeee;	padding:20px;}#jboil-site-info {	text-align:center;}#jboil-copyright {	text-align: center;}@media (min-width: 992px) {	#jboil-site-info {		text-align:right;	}	#jboil-copyright {		text-align: left;	}}/* =Page/Single-------------------------------------------------------------- */#jboil-page-wrapper {	margin-top:25px;}#jboil-post-image-container {	width: 100%;	margin-bottom:20px;	height:350px;}#jboil-content {	margin-bottom:25px;}.jboil-archive-utility, .jboil-entry-utility {	margin-bottom: 20px;	font-size: 12px;	font-family: "M1cregular";}.jboil-entry-content {	margin-bottom: 20px;}#jboil-nav-below {	margin-bottom: 15px;	font-size:14px;}.jboil-nav-previous {	text-align:left;}.jboil-nav-next {	text-align:right;}/* =Sidebar-------------------------------------------------------------- */#jboil-sidebar>ul {	margin-left:-40px;}.jboil-widget-list {	margin-left:-21px;	list-style: square;}.widget-container {	margin-bottom:25px;}.jboil-widget-list li {	margin-bottom:5px;}.jboil-search-field {	width:75%;	display: inline-block;}.jboil-search-btn {	float:right;	width:23%;}.jboil-widget-container {	margin-bottom:20px;}/* =Archives-------------------------------------------------------------- */.jboil-archive-thumb {	height:250px;	cursor:pointer;}.jboil-archive-post {	margin-left:0;	margin-right:0;	border-bottom: 1px solid #eee;	margin-bottom: 25px;	padding-bottom: 15px;	position:relative;}.jboil-entry-meta {	margin-bottom: 20px;	font-size: 12px;	font-family: "M1cregular";}.jboil-archive-post .jboil-archive-utility {	position: absolute;	bottom: -25px;}.jboil-archive-detail {	height:250px;}.jboil-no-thumb {	margin-left:-15px;	margin-right:-15px;}@media (max-width: 768px) {	.jboil-archive-detail:not(.jboil-no-thumb) {		position:absolute;		top:0;		color: white;		z-index:10px;		padding-top:15px;		padding-bottom:15px;	}	.jboil-archive-detail:not(.jboil-no-thumb) a{		color: white;	}	.jboil-archive-post .jboil-archive-utility {		position: relative;		top:0;	}}@media (max-width: 480px) {	.jboil-archive-post {		height:auto;		overflow:hidden;	}}/* =Comments-------------------------------------------------------------- */.jboil-comment-list {	list-style: none;	margin-bottom: 15px;	margin-left:-40px;}.jboil-comment-list > li.comment:nth-child(even) {	background-color: #fff;	border: 1px solid rgb(207, 207, 207);}.jboil-comment-list > li.comment:nth-child(odd) {	border: 1px solid #fff;}.jboil-comment-list li.comment {	padding: 10px;}.comment-meta {	font-size: 12px;	font-family: "M1cregular";	margin: 5px 0 20px;	padding: 1px 0 5px;	border-bottom: 1px solid rgb(207, 207, 207);}.jboil-comment-list .reply {	font-size: 12px;	font-family: "M1cregular";}.children li.comment {	border-top: 1px solid #807e7e;	margin-top: 5px;}/* =Custom Content-------------------------------------------------------------- */#jboil-resume .col-sm-5 {	margin-bottom:15px;}#jboil-resume .jboil-widget-list {	margin-bottom:15px;}#jboil-resume .jboil-widget-list li {	margin-bottom:0;}.jboil-resume-skill {	margin-bottom:15px;}@media (max-width: 768px) {	.jboil-resume-date {		font-size: 13px;		line-height: 23px;	}}/* =Attachments-------------------------------------------------------------- */.jboil-entry-attachment .attachment{	height: 350px;}

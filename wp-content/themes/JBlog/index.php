@@ -14,15 +14,7 @@
  */
 
 get_header(); ?>
-	
-	<div id="body_wrapper" class="container_24">
 		
-		<!-- The next three statements load slider.php, buckets.php and main-message.php respectively --!>
-
-		
-		<?php get_template_part("main-message"); ?>
+	<?php get_template_part("main-message"); ?>
 			
-			
-	</div><!-- #body_wrapper -->
-
 <?php get_footer(); ?>

@@ -14,8 +14,8 @@
 
 get_header(); ?>
 
-		<div id="body_wrapper" class="container_24">
-			<div id="content" role="main" >
+		<div id="jboil-page-wrapper" class="row">
+			<div id="jboil-content" role="main" class="col-md-8">
 
 <?php
 	/* Queue the first post, that way we know

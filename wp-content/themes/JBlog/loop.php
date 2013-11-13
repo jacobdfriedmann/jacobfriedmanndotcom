@@ -121,64 +121,59 @@
 <?php /* How to display all other posts. */ ?>
 
 	<?php else : ?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<?php the_post_thumbnail('loop'); ?>
-			<header>
-				<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'jboil' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+		<article id="post-<?php the_ID(); ?>" <?php post_class('row jboil-archive-post'); ?>>
+			<?php if (has_post_thumbnail()) { ?>
+				<div class="col-sm-4 jboil-archive-thumb jboil-imgliquid" onclick="window.location.href='<?php the_permalink(); ?>'">
+					<?php the_post_thumbnail('large'); ?>
+				</div>
+				<div class="col-sm-8 jboil-archive-detail">
+			<?php } else { ?>
+				<div class="col-sm-12 jboil-archive-detail jboil-no-thumb" >
+			<?php } ?>
+				<header>
+					<h2><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'jboil' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 
-				<p class="entry-meta">
-					<?php jboil_posted_on(); ?>
-				</p><!-- .entry-meta -->
-			</header>
+					<p class="jboil-entry-meta">
+						<?php jboil_posted_on(); ?>
+					</p><!-- .entry-meta -->
+				</header>
 
-	<?php if ( is_archive() || is_search() ) : // Only display excerpts for archives and search. ?>
-			<div class="entry-summary">
-				<?php the_excerpt(); ?>
-			</div><!-- .entry-summary -->
-	<?php else : ?>
-			<div class="entry-content">
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'jboil' ) ); ?>
-				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'jboil' ), 'after' => '</div>' ) ); ?>
-			</div><!-- .entry-content -->
-	<?php endif; ?>
-<?php
-$category = get_the_category();
-$name =  $category[0]->term_id;
-if ($name == get_option('color1_cat')) {
-	$color = 'color1';
-}
-elseif ($name == get_option('color2_cat')) {
-	$color = 'color2';
-}
-elseif ($name == get_option('color3_cat')) {
-	$color = 'color3';
-}
-elseif ($name == get_option('color4_cat')) {
-	$color = 'color4';
-}
-else {
-	$color = 'color5';
-} ?>
-
-			<footer class="entry-utility archive-utility">
-				<?php if ( count( get_the_category() ) ) : ?>
-					<span class="cat-links">
-						<?php printf( __( '<span class="%1$s">Posted in</span> <span class="%3$s"> %2$s</span>', 'jboil' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ), $color ); ?>
-					</span>
-					<span class="meta-sep">|</span>
+				<?php if ( is_archive() || is_search() ) : // Only display excerpts for archives and search. ?>
+					<div>
+						<?php the_excerpt(); ?>
+					</div><!-- .entry-summary -->
+				<?php else : ?>
+					<div>
+						<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'jboil' ) ); ?>
+						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'jboil' ), 'after' => '</div>' ) ); ?>
+					</div><!-- .entry-content -->
 				<?php endif; ?>
+				
 				<?php
-					$tags_list = get_the_tag_list( '', ', ' );
-					if ( $tags_list ):
-				?>
-					<span class="tag-links">
-						<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'jboil' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
-					</span>
-					<span class="meta-sep">|</span>
-				<?php endif; ?>
-				<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'jboil' ), __( '1 Comment', 'jboil' ), __( '% Comments', 'jboil' ) ); ?></span>
-				<?php edit_post_link( __( 'Edit', 'jboil' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
-			</footer><!-- .entry-utility -->
+				$category = get_the_category();
+				$color =  $category[0]->slug."_color";
+				 ?>
+
+				<footer class="jboil-archive-utility">
+					<?php if ( count( get_the_category() ) ) : ?>
+						<span class="cat-links">
+							<?php printf( __( '<span class="%1$s">Posted in</span> <span class="%3$s"> %2$s</span>', 'jboil' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ), $color ); ?>
+						</span>
+						<span class="meta-sep">|</span>
+					<?php endif; ?>
+					<?php
+						$tags_list = get_the_tag_list( '', ', ' );
+						if ( $tags_list ):
+					?>
+						<span class="tag-links">
+							<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'jboil' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+						</span>
+						<span class="meta-sep">|</span>
+					<?php endif; ?>
+					<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'jboil' ), __( '1 Comment', 'jboil' ), __( '% Comments', 'jboil' ) ); ?></span>
+					<?php edit_post_link( __( 'Edit', 'jboil' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
+				</footer><!-- .entry-utility -->
+			</div>
 		</article><!-- #post-## -->
 
 		<?php comments_template( '', true ); ?>
