@@ -1,5 +1,5 @@
-jf-wordpress
-============
+jacobfriedmanndotcom
+====================
 
-Jacob's Wordpress Site
+JacobFriedmann.com
 
