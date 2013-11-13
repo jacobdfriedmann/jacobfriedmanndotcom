@@ -4,6 +4,7 @@ var page = 2;
 jQuery(function() {
 	// Make images responsive
 	jQuery('.jboil-imgliquid').imgLiquid();
+	jQuery(".jboil-imgliquid").css("visibility", "visible").hide().fadeIn("slow")
 	
 	// Set the page title for small screens
 	var menupage = jQuery(".current-menu-item");
