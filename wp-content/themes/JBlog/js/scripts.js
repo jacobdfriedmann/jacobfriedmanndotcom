@@ -30,7 +30,7 @@ jQuery(function() {
 				var newdiv = jQuery("<div style='display:none'>"+ data + "</div>");
 				jQuery('#jboil-main-message').append(newdiv);
 				jQuery(newdiv).fadeIn("slow");
-				jQuery(data).find(".jboil-imgliquid").css("visibility", "visible").hide().fadeIn("slow");
+				jQuery(".jboil-imgliquid").filter(function (index) { return jQuery(this).css('visibility') == 'hidden' }).css("visibility", "visible").hide().fadeIn("slow");
 				if (jQuery(data).filter(".jboil-post-block").length < 9) {
 					jQuery("#jboil-load-more").hide();
 				}
