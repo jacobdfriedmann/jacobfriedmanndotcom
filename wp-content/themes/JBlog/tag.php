@@ -9,10 +9,10 @@
 
 get_header(); ?>
 
-		<div id="body_wrapper" class="container_24">
-			<div id="content" role="main" class="grid_16">
+		<div id="jboil-page-wrapper" class="row">
+			<div id="jboil-content" role="main" class="col-md-8">
                 <header>
-    				<h1 class="page-title"><?php
+    				<h1 class="jboil-page-title"><?php
     					printf( __( 'Tag Archives: %s', 'jboil' ), '<span>' . single_tag_title( '', false ) . '</span>' );
     				?></h1>
                 </header>

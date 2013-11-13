@@ -8,9 +8,8 @@
  */
 ?>
 
-<div id="sidebar" class="widget-area" role="complementary">
+<div id="jboil-sidebar" class="widget-area col-md-4" role="complementary">
 	<ul>
-
 	<?php
 	/* When we call the dynamic_sidebar() function, it'll spit out
 	 * the widgets for that widget area. If it instead returns false,
@@ -19,21 +18,13 @@
 	 */
 	 ?>
 
-			<li id="search" class="widget-container widget_search">
-				<?php get_search_form(); ?>
-			</li>
+	<?php if (dynamic_sidebar( 'primary-widget-area' )) : else :   ?>
+		<li id="search" class="jboil-widget-container widget_search">
+			<?php get_search_form(); ?>
+		</li>
 
-			<li id="archives" class="widget-container">
-				<?php wp_reset_postdata(); ?>
-				<h3 class="widget-title">Recent Posts</h3>
-				<ul class="widget_list">
-					<?php get_recent_posts_list(5); ?>
-					
-				</ul>
-			</li>
-
-		
-
-	<?php dynamic_sidebar( 'primary-widget-area' );  ?>
+		<?php the_widget("JBoil_RecentPosts_Widget"); ?>
+	<?php endif; ?>
+	
 	</ul>
 </div><!-- #primary .widget-area -->

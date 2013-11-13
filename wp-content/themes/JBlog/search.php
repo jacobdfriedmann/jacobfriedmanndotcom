@@ -9,10 +9,10 @@
 
 get_header(); ?>
 
-		<div id="body_wrapper" class="container_24">
-			<div id="content" role="main" class="grid_16">
+		<div id="jboil-page-wrapper" class="row">
+			<div id="jboil-content" role="main" class="col-md-8">
 
-<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) : ?>
 				<header>
 					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'jboil' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 				</header>
@@ -22,8 +22,8 @@ get_header(); ?>
 				 * called loop-search.php and that will be used instead.
 				 */
 				 get_template_part( 'loop', 'search' );
-				?>
-<?php else : ?>
+			?>
+			<?php else : ?>
 				<article id="post-0" class="post no-results not-found">
 					<h2 class="entry-title"><?php _e( 'Nothing Found', 'jboil' ); ?></h2>
 					<div class="entry-content">
@@ -31,10 +31,10 @@ get_header(); ?>
 						<?php get_search_form(); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-0 -->
-<?php endif; ?>
-			</div><!-- #content -->
+			<?php endif; ?>
+			</div>
 			<?php get_sidebar(); ?>
-		</div><!-- #container -->
+		</div>
 
 
 <?php get_footer(); ?>

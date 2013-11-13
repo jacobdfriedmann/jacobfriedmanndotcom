@@ -13,33 +13,25 @@
  */
 
 get_header(); ?>
+		<div id="jboil-page-wrapper" class="row">
+			<div id="jboil-content" role="main" class="col-md-8">
 
-		<div id="body_wrapper" class="container_24">
-			<div id="content" role="main" class="">
+				<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+								<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<header>
-						<?php if ( is_front_page() ) { ?>
-							<h2 class="entry-title"><?php the_title(); ?></h2>
-						<?php } else { ?>
-							<h1 class="entry-title"><?php the_title(); ?></h1>
-						<?php } ?>
-					</header>
+									<div class="entry-content">
+										<?php the_content(); ?>
+										<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'jboil' ), 'after' => '</div>' ) ); ?>
+										<?php edit_post_link( __( 'Edit', 'jboil' ), '<span class="edit-link">', '</span>' ); ?>
+									</div><!-- .entry-content -->
+								</article><!-- #post-## -->
 
-					<div class="entry-content">
-						<?php the_content(); ?>
-						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'jboil' ), 'after' => '</div>' ) ); ?>
-						<?php edit_post_link( __( 'Edit', 'jboil' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-content -->
-				</article><!-- #post-## -->
+				<?php endwhile;?>
 
-<?php endwhile; ?>
-
-			</div><!-- #content -->
+			</div>
 			<?php get_sidebar(); ?>
-		</div><!-- #body_wrapper -->
+		</div>
 
 
 <?php get_footer(); ?>
