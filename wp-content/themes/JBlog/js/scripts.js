@@ -158,7 +158,7 @@ jQuery(function() {
 			setOpacity(".jboil-post-block-content", 150);
 			setOpacity(".jboil-archive-detail", 150);
 			jboilTruncate(".jboil-entry", Math.round(window.innerWidth/10));
-			jboilTruncate(".jboil-archive-excerpt", Math.round(window.innerWidth/15));
+			jboilTruncate(".jboil-archive-excerpt", Math.round(window.innerWidth/30));
 		}
 		// sm
 		else if (window.innerWidth >= 768 && window.innerWidth < 992){
@@ -188,10 +188,14 @@ jQuery(function() {
 		setTextColor(".jboil-post-block-content", true);
 		jboilChange();
 	}
-	
-	jQuery(window).resize(function() {jboilChange()});
-	jQuery(window).scroll(function() {jboilChange()});
-	
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.	userAgent) ) {
+		setInterval(function() {jboilChange() }, 250);
+	}
+	else {
+		jQuery(window).resize(function() {jboilChange()});
+		jQuery(window).scroll(function() {jboilChange()});
+	}
+
 	// Do it!
 	jboilInit();
 	jQuery("#jboil-content").css("visibility", "visible").hide().fadeIn("slow");
