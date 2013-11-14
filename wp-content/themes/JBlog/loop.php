@@ -139,7 +139,7 @@
 				</header>
 
 				<?php if ( is_archive() || is_search() ) : // Only display excerpts for archives and search. ?>
-					<div>
+					<div class="jboil-archive-excerpt">
 						<?php the_excerpt(); ?>
 					</div><!-- .entry-summary -->
 				<?php else : ?>
