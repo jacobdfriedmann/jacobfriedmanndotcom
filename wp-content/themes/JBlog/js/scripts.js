@@ -172,6 +172,14 @@ var jboil = window.jboil = {
 			jQuery(".jboil-black").removeClass("jboil-black");
 		}
 	},
+	
+	affixSidebar: function() {
+		jQuery("#jboil-sidebar>div").affix({
+			offset: {
+				bottom: 250
+			}
+		});
+	},
 		
 	truncate: function() { // Truncates Excerpt to specific length
 		var length = arguments[0];
@@ -222,6 +230,9 @@ var jboil = window.jboil = {
 		this.postClassName = this.getPostClassName();
 		this.excerptClassName = this.getExcerptClassName();
 		
+		// Fix Sidebar
+		this.affixSidebar();
+		
 		// Logic for single posts
 		if (this.pageType == "post") {
 			// Set up comment form
@@ -239,10 +250,9 @@ var jboil = window.jboil = {
 				context.loadMorePosts();
 			});
 			if (this.deviceType == "mobile") {
-				skrollr.init();
+				
 			}
 			else {
-				this.refresh();
 				jQuery(window).resize(function () {
 					context.refresh();
 				});
@@ -252,7 +262,7 @@ var jboil = window.jboil = {
 		else if (this.pageType == "archive") {
 			this.refresh();
 			if (this.deviceType == "mobile") {
-				skrollr.init();
+				
 			}
 			else {
 				var context = this;
@@ -269,14 +279,10 @@ var jboil = window.jboil = {
 		// Mobile refresh
 		if (this.deviceType == "Mobile") {
 			if (this.screenSize == "xs") {
-				jQuery(this.postClassName).attr("data-150-top", "opacity:1;");
-				jQuery(this.postClassName).attr("data-bottom", "opacity:0;");
 				this.truncate(12);
 				this.setBlockTextColor();
 			}
 			else if (this.screenSize == "sm") {
-				jQuery(this.postClassName).attr("data-300-top", "opacity:1;");
-				jQuery(this.postClassName).attr("data-bottom", "opacity:0;");
 				if (this.pageType == "archive") {
 					this.truncate(35);
 				}
@@ -284,7 +290,6 @@ var jboil = window.jboil = {
 					this.truncate(80);
 				}
 			}
-			skrollr.get().refresh();
 		}
 		// Desktop refresh
 		else {	
