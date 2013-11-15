@@ -123,10 +123,7 @@
 	<?php else : ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class('row jboil-archive-post'); ?>>
 			<?php if (has_post_thumbnail()) { ?>
-				<div class="col-sm-4 jboil-archive-thumb jboil-imgliquid" onclick="window.location.href='<?php the_permalink(); ?>'">
-					<?php the_post_thumbnail('large'); ?>
-				</div>
-				<div class="col-sm-8 jboil-archive-detail">
+				<div class="col-sm-8 col-sm-push-4 jboil-archive-detail">
 			<?php } else { ?>
 				<div class="col-sm-12 jboil-archive-detail jboil-no-thumb" >
 			<?php } ?>
@@ -174,6 +171,11 @@
 					<?php edit_post_link( __( 'Edit', 'jboil' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
 				</footer><!-- .entry-utility -->
 			</div>
+			<?php if (has_post_thumbnail()) { ?>
+				<div class="col-sm-4 col-sm-pull-8 jboil-archive-thumb jboil-imgliquid" onclick="window.location.href='<?php the_permalink(); ?>'">
+						<?php the_post_thumbnail('large'); ?>
+				</div>
+			<?php } ?>
 		</article><!-- #post-## -->
 
 		<?php comments_template( '', true ); ?>
