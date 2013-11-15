@@ -16,7 +16,7 @@ $color = hex2rgb(get_option($category[0]->slug.'_color'));
 		<div class="jboil-post-block-content" style="background: rgba(<?php echo $color ?>); display: block; top:0;">
 	<?php } ?>
 		<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-		<div class="jboil-entry">
+		<div class="jboil-post-block-excerpt">
 			<?php the_excerpt(); ?>
 		</div>
 		<p class="jboil-post-block-category"><?php the_category(', '); ?></p>
