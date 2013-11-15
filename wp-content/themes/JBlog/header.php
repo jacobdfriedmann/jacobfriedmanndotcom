@@ -28,7 +28,7 @@
 <!--[if lte IE 8 ]>
 <noscript><strong>JavaScript is required for this website to be displayed correctly. Please enable JavaScript before continuing...</strong></noscript>
 <![endif]-->
-<div id="jboil-wrapper" class="hfeed">
+<div id="skrollr-body" class="hfeed">
 	<div id="jboil-header-wrapper" class="hidden-xs">
 		<!-- The sites banner logo -->
 		<div id="jboil-logo-wrapper" class="page-header">			<div id="jboil-logo-container">
