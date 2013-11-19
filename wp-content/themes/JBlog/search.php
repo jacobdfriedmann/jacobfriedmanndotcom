@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-		<div id="jboil-page-wrapper" class="row">
+		<div id="jboil-page-wrapper" class="search row">
 			<div id="jboil-content" role="main" class="col-md-8">
 
 			<?php if ( have_posts() ) : ?>

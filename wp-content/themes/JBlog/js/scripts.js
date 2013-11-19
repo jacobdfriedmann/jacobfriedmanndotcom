@@ -42,9 +42,9 @@ var jboil = window.jboil = {
 	},
 	
 	getPageType: function () { // Determine what kind of wordpress page we are on
-		var body = jQuery("body");
+		var body = jQuery("#jboil-page-wrapper");
 		var page;
-		if (body.hasClass("home")) {
+		if (body.hasClass("index")) {
 			page = "index";
 		}
 		else if (body.hasClass("page")) {
@@ -94,7 +94,7 @@ var jboil = window.jboil = {
 			data: ({ action: 'jboil_load_more', page: this.page }),
 			success: function(data){
 				var newdiv = jQuery("<div style='display:none'>"+ data + "</div>");
-				jQuery('#jboil-main-message').append(newdiv);
+				jQuery('#jboil-page-wrapper').append(newdiv);
 				jQuery(newdiv).fadeIn("slow");
 				context.refresh();
 				jQuery(".jboil-imgliquid").filter(function (index) { return jQuery(this).css('visibility') == 'hidden' }).imgLiquid().css("visibility", "visible").hide().fadeIn("slow");
@@ -174,11 +174,13 @@ var jboil = window.jboil = {
 	},
 	
 	affixSidebar: function() {
-		jQuery("#jboil-sidebar>div").affix({
-			offset: {
-				bottom: 250
-			}
-		});
+		if (jQuery("#jboil-content").height() >= jQuery("#jboil-sidebar>div").height()) {
+			jQuery("#jboil-sidebar>div").affix({
+				offset: {
+					bottom: 250
+				}
+			})
+		}
 	},
 		
 	truncate: function() { // Truncates Excerpt to specific length
@@ -205,10 +207,83 @@ var jboil = window.jboil = {
 		}
 	},
 	
-	init: function () { // initialize a page
+	ajaxify: function () {
+		var className = arguments[0];
+		var context = this;
+		jQuery(className).click( function(e) {
+			e.preventDefault();
+			var urlPath = jQuery(this).attr("href");
+			var url = urlPath + " #jboil-page-wrapper";
+			var curtain = jQuery("#jboil-curtain");
+			var content = jQuery("#jboil-content-wrapper");
+			curtain
+				.css("top", content.position().top)
+				.css("left", content.position().left)
+				.width(content.width())
+				.height(content.height());
+			content.animate({"opacity": 0}, 1000, function () { curtain.show(); } );
+			jQuery("#jboil-main-navigation-list").collapse("hide");
+			jQuery(".jboil-menu-page-title").animate({"opacity":0}, 1000);
+			jQuery("#jboil-content-wrapper").load(url, function(response) {
+				var title = jQuery(response).find("title").text();
+				var menupage = jQuery(response).find(".current-menu-item").attr("id");
+				if (!menupage) {
+					menupage = jQuery(response).find(".current-menu-parent").attr("id");
+				}
+				jQuery("title").text(title);
+				jQuery(".current-menu-item, .current-menu-parent").removeClass("current-menu-item").removeClass("current-menu-parent");
+				jQuery("#"+menupage).addClass("current-menu-item");
+				window.history.pushState({"html":response,"pageTitle":title},"", urlPath);
+				jQuery.proxy(jboil.init(true), jboil);
+				jQuery(".jboil-menu-page-title").animate({"opacity":1}, 1000);
+				window.scrollTo(0);
+				content.animate({"opacity":1}, 1000, function () { curtain.hide(); });
+				context.affixSidebar();
+			});
+		});
+	},
+	
+	makePostsMobile: function () {
+		if (this.pageType == "index") {
+			jQuery(".jboil-post-block-content").css("opacity", 1).css("height", "auto").css("padding-bottom", 0);
+			jQuery(".jboil-post-block-title").css("display", "inline-block").css("margin-top", "7px");
+			jQuery(".jboil-post-block-excerpt, .jboil-post-block-category").css("display", "none");
+			jQuery(".jboil-index-thumb").each( function () {
+				jQuery(this).css("top", "-" + jQuery(this).siblings(".jboil-post-block-content")[0].clientHeight + "px");
+			});
+		}
+		else if (this.pageType == "archive" && this.screenSize == "xs") {
+			jQuery(".jboil-archive-detail").css("opacity", 1).css("padding-bottom", 0).css("height", "auto");
+			jQuery(".jboil-archive-detail h2").css("display", "inline-block").css("margin-top", "7px");
+			jQuery(".jboil-entry-meta, .jboil-archive-excerpt, .jboil-archive-utility").css("display", "none");
+			jQuery(".jboil-archive-thumb").each( function () {
+				jQuery(this).css("top", "-" + jQuery(this).siblings(".jboil-archive-detail")[0].clientHeight + "px");
+			});
+		}
+	},
+	
+	init: function (ajax) { // initialize a page
 		
 		// Things we do on all pages
+		if (!ajax) {
+			
+			// Fix body padding
+			var bodyPadding = jQuery("body").css("padding-top");
+			bodyPadding = parseInt(bodyPadding.substring(0, bodyPadding.indexOf("p")));
+			jQuery("#wpadminbar").hide();
+			if (jQuery("body").offset().top != 0) {
+				jQuery("body").css("padding-top", (bodyPadding - jQuery("body").offset().top) + "px");
+			}
+			
+			// Make top navigation ajax calls
+			this.ajaxify(".menu-item a");
+			
+			// Fix Sidebar
+			this.affixSidebar();
+		}
 		
+		this.ajaxify(".widget_jboil_recentposts_widget a");
+			
 		// Make images responsive
 		jQuery('.jboil-imgliquid').imgLiquid();
 		jQuery(".jboil-imgliquid").css("visibility", "visible").hide().fadeIn("slow");
@@ -230,11 +305,8 @@ var jboil = window.jboil = {
 		this.postClassName = this.getPostClassName();
 		this.excerptClassName = this.getExcerptClassName();
 		
-		// Fix Sidebar
-		this.affixSidebar();
-		
 		// Logic for single posts
-		if (this.pageType == "post") {
+		if (this.pageType == "single") {
 			// Set up comment form
 			jQuery(".form-submit").find("input[type=submit]").addClass("form-control btn btn-default");
 		}
@@ -249,27 +321,17 @@ var jboil = window.jboil = {
 			jQuery("#jboil-load-more").click(function() {
 				context.loadMorePosts();
 			});
-			if (this.deviceType == "mobile") {
-				
-			}
-			else {
-				jQuery(window).resize(function () {
-					context.refresh();
-				});
-			}
+			jQuery(window).resize(function () {
+				context.refresh();
+			});
 		}
 		// Logic for archive pages
 		else if (this.pageType == "archive") {
 			this.refresh();
-			if (this.deviceType == "mobile") {
-				
-			}
-			else {
-				var context = this;
-				jQuery(window).resize(function () {
-					context.refresh();
-				});
-			}
+			var context = this;
+			jQuery(window).resize(function () {
+				context.refresh();
+			});
 		}
 		// Fade in content for it is loaded
 		jQuery("#jboil-content").css("visibility", "visible").hide().fadeIn("slow");
@@ -277,17 +339,18 @@ var jboil = window.jboil = {
 	
 	refresh: function() {
 		// Mobile refresh
-		if (this.deviceType == "Mobile") {
+		if (this.deviceType == "mobile") {
 			if (this.screenSize == "xs") {
-				this.truncate(12);
+				this.makePostsMobile();
 				this.setBlockTextColor();
 			}
-			else if (this.screenSize == "sm") {
+			else if (this.screenSize == "sm" || this.screenSize == "md") {
 				if (this.pageType == "archive") {
 					this.truncate(35);
 				}
-				else {
-					this.truncate(80);
+				else if (this.pageType == "index") {
+					this.makePostsMobile();
+					this.setBlockTextColor();
 				}
 			}
 		}
