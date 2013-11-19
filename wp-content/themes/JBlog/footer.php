@@ -2,7 +2,7 @@
 /**
  * The template for displaying the footer.
  */
-?>	</div> <!-- Close content wrapper -->
+?>	</div> <!-- Close content wrapper --><div id="jboil-curtain"></div>
 	<div id="jboil-footer-widget-wrapper">
 				<div id="jboil-footer-widget-container" class="container">
 			<div id="jboil-social-media-icons" class="row">

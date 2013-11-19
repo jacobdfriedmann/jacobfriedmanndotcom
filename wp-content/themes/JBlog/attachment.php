@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-		<div id="jboil-page-wrapper" class="single-attachment row">
+		<div id="jboil-page-wrapper" class="single-attachment single row">
 			<div id="jboil-content" role="main" class="col-md-8">
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>

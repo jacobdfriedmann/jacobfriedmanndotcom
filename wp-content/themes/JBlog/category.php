@@ -3,7 +3,7 @@
  * The template for displaying Category Archive pages.
  */
 get_header(); ?>
-	<div id="jboil-page-wrapper" class="row">
+	<div id="jboil-page-wrapper" class="archive row">
 		<div id="jboil-content" role="main" class="col-md-8">
 			<?php
 				$category_description = category_description();

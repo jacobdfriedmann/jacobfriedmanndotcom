@@ -5,11 +5,7 @@
  */
 ?>
 <?php $numposts = wp_count_posts(); ?>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        
-    });</script>  
-<div id="jboil-main-message" class="row">
+<div id="jboil-page-wrapper" class="index row">
 <!-- Start the Loop. -->
 	<?php query_posts('posts_per_page=9'); ?>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
