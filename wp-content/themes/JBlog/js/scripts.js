@@ -221,8 +221,8 @@ var jboil = window.jboil = {
 				.css("left", content.position().left)
 				.width(content.width())
 				.height(content.height());
-			content.animate({"opacity": 0}, 1000, function () { curtain.show(); } );
-			jQuery("#jboil-main-navigation-list").collapse("hide");
+			content.animate({"opacity": 0}, 600, function () { curtain.show(); } );
+			if (jboil.screenSize == "xs") jQuery("#jboil-main-navigation-list").collapse("hide");
 			jQuery(".jboil-menu-page-title").animate({"opacity":0}, 1000);
 			jQuery("#jboil-content-wrapper").load(url, function(response) {
 				var title = jQuery(response).find("title").text();
@@ -237,7 +237,7 @@ var jboil = window.jboil = {
 				jQuery.proxy(jboil.init(true), jboil);
 				jQuery(".jboil-menu-page-title").animate({"opacity":1}, 1000);
 				window.scrollTo(0);
-				content.animate({"opacity":1}, 1000, function () { curtain.hide(); });
+				content.stop().animate({"opacity":1}, 600, function () { curtain.hide(); });
 				context.affixSidebar();
 			});
 		});
@@ -262,18 +262,16 @@ var jboil = window.jboil = {
 		}
 	},
 	
+	fixBodyPadding: function() {
+		jQuery("body").css("padding-top", jQuery("#jboil-header-wrapper").height() -jQuery("body").offset().top -10);
+	},
+	
 	init: function (ajax) { // initialize a page
 		
 		// Things we do on all pages
-		if (!ajax) {
-			
-			// Fix body padding
-			var bodyPadding = jQuery("body").css("padding-top");
-			bodyPadding = parseInt(bodyPadding.substring(0, bodyPadding.indexOf("p")));
+		if (!ajax) {			
+		
 			jQuery("#wpadminbar").hide();
-			if (jQuery("body").offset().top != 0) {
-				jQuery("body").css("padding-top", (bodyPadding - jQuery("body").offset().top) + "px");
-			}
 			
 			// Make top navigation ajax calls
 			this.ajaxify(".menu-item a");
@@ -281,6 +279,8 @@ var jboil = window.jboil = {
 			// Fix Sidebar
 			this.affixSidebar();
 		}
+		
+		this.fixBodyPadding();
 		
 		this.ajaxify(".widget_jboil_recentposts_widget a");
 			
@@ -309,10 +309,15 @@ var jboil = window.jboil = {
 		if (this.pageType == "single") {
 			// Set up comment form
 			jQuery(".form-submit").find("input[type=submit]").addClass("form-control btn btn-default");
+			jQuery(window).resize(function () {
+				jboil.fixBodyPadding();
+			});
 		}
 		// Logic for static page
 		else if (this.pageType == "page") {
-			
+			jQuery(window).resize(function () {
+				jboil.fixBodyPadding();
+			});
 		}
 		// Logic for index
 		else if (this.pageType == "index") {
@@ -322,6 +327,7 @@ var jboil = window.jboil = {
 				context.loadMorePosts();
 			});
 			jQuery(window).resize(function () {
+				context.fixBodyPadding();
 				context.refresh();
 			});
 		}
@@ -330,6 +336,7 @@ var jboil = window.jboil = {
 			this.refresh();
 			var context = this;
 			jQuery(window).resize(function () {
+				context.fixBodyPadding();
 				context.refresh();
 			});
 		}
