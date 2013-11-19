@@ -1,5 +1,3 @@
-Redirect 301 http://jacobfriedmann.com http://www.jacobfriedmann.com
-
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
