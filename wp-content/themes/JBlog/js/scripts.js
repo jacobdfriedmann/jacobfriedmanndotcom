@@ -209,39 +209,42 @@ var jboil = window.jboil = {
 	
 	ajaxify: function () {
 		var className = arguments[0];
-		var context = this;
 		jQuery(className).click( function(e) {
-
 			e.preventDefault();
 			var urlPath = jQuery(this).attr("href");
-			var url = urlPath + " #jboil-page-wrapper";
-			var curtain = jQuery("#jboil-curtain");
-			var content = jQuery("#jboil-content-wrapper");
-			curtain
-				.css("top", content.position().top)
-				.css("left", content.position().left)
-				.width(content.width())
-				.height(content.height());
-			content.animate({"opacity": 0}, 600, function () { curtain.show(); } );
-			if (jboil.screenSize == "xs") jQuery("#jboil-main-navigation-list").collapse("hide");
-			jQuery(".jboil-menu-page-title").animate({"opacity":0}, 1000);
-			jQuery("#jboil-content-wrapper").load(url, function(response) {
-				var title = jQuery(response).find("title").text();
-				var menupage = jQuery(response).find(".current-menu-item").attr("id");
-				if (!menupage) {
-					menupage = jQuery(response).find(".current-menu-parent").attr("id");
-				}
-				jQuery("title").text(title);
-				jQuery(".current-menu-item, .current-menu-parent").removeClass("current-menu-item").removeClass("current-menu-parent");
-				jQuery("#"+menupage).addClass("current-menu-item");
-				window.history.pushState({"html":response,"pageTitle":title},"", urlPath);
-				jQuery(".jboil-menu-page-title").stop(false, true);
-				jQuery.proxy(jboil.init(true), jboil);
-				jQuery(".jboil-menu-page-title").animate({"opacity":1}, 1000);
-				window.scrollTo(0);
-				content.stop().animate({"opacity":1}, 600, function () { curtain.hide(); });
-				context.affixSidebar();
-			});
+			jboil.doAjax(urlPath);
+		});
+	},
+
+	doAjax: function() {
+		var urlPath = arguments[0];
+		var url = urlPath + " #jboil-page-wrapper";
+		var curtain = jQuery("#jboil-curtain");
+		var content = jQuery("#jboil-content-wrapper");
+		curtain
+			.css("top", content.position().top)
+			.css("left", content.position().left)
+			.width(content.width())
+			.height(content.height());
+		content.animate({"opacity": 0}, 600, function () { curtain.show(); } );
+		if (jboil.screenSize == "xs") jQuery("#jboil-main-navigation-list").collapse("hide");
+		jQuery(".jboil-menu-page-title").animate({"opacity":0}, 1000);
+		jQuery("#jboil-content-wrapper").load(url, function(response) {
+			var title = jQuery(response).find("title").text();
+			var menupage = jQuery(response).find(".current-menu-item").attr("id");
+			if (!menupage) {
+				menupage = jQuery(response).find(".current-menu-parent").attr("id");
+			}
+			jQuery("title").text(title);
+			jQuery(".current-menu-item, .current-menu-parent").removeClass("current-menu-item").removeClass("current-menu-parent");
+			jQuery("#"+menupage).addClass("current-menu-item");
+			window.history.pushState({"html":response,"pageTitle":title},"", urlPath);
+			jQuery(".jboil-menu-page-title").stop(false, true);
+			jQuery.proxy(jboil.init(true), jboil);
+			jQuery(".jboil-menu-page-title").animate({"opacity":1}, 1000);
+			window.scrollTo(0);
+			content.stop().animate({"opacity":1}, 300, function () { curtain.hide(); });
+			jboil.affixSidebar();
 		});
 	},
 	
@@ -276,7 +279,7 @@ var jboil = window.jboil = {
 			jQuery("#wpadminbar").hide();
 			
 			// Make top navigation ajax calls
-			this.ajaxify(".menu-item a");
+			this.ajaxify(".menu-item a, a.navbar-brand, #jboil-logo-container>a");
 			
 			// Fix Sidebar
 			this.affixSidebar();
@@ -284,7 +287,7 @@ var jboil = window.jboil = {
 		
 		this.fixBodyPadding();
 		
-		this.ajaxify(".widget_jboil_recentposts_widget a");
+		this.ajaxify(".widget_jboil_recentposts_widget a, .jboil-entry-meta a, .jboil-nav-below a, .jboil-entry-utility a, .jboil-archive-excerpt p a, .cat-links a");
 			
 		// Make images responsive
 		jQuery('.jboil-imgliquid').imgLiquid();
@@ -332,6 +335,9 @@ var jboil = window.jboil = {
 				context.fixBodyPadding();
 				context.refresh();
 			});
+			if (ajax) {
+				this.page = 2;
+			}
 		}
 		// Logic for archive pages
 		else if (this.pageType == "archive") {

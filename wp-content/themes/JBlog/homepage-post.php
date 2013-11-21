@@ -6,7 +6,7 @@ $color = hex2rgb(get_option($category[0]->slug.'_color'));
 
 ?>
 
-<div class="jboil-post-block col-md-4" onclick="window.location.href='<?php the_permalink(); ?>'">
+<div class="jboil-post-block col-md-4" onclick="jboil.doAjax('<?php the_permalink(); ?>')">
 	<?php if (has_post_thumbnail()) { ?>
 		<div class="jboil-post-block-content" style="background: rgba(<?php echo $color ?>)">
 	<?php } else { ?>
