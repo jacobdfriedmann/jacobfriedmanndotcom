@@ -288,7 +288,7 @@ var jboil = window.jboil = {
 		
 		this.fixBodyPadding();
 		
-		this.ajaxify(".widget_jboil_recentposts_widget a, .jboil-entry-meta a, .jboil-nav-below a, .jboil-entry-utility a, .jboil-archive-excerpt p a, .cat-links a");
+		this.ajaxify(".widget_jboil_recentposts_widget a, .jboil-entry-meta a, .jboil-nav-below a, .jboil-entry-utility a, .jboil-archive-detail a");
 			
 		// Make images responsive
 		jQuery('.jboil-imgliquid').imgLiquid();
