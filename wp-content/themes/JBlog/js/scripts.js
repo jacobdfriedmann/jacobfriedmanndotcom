@@ -175,6 +175,7 @@ var jboil = window.jboil = {
 	
 	affixSidebar: function() {
 		if (jQuery("#jboil-content").height() >= jQuery("#jboil-sidebar>div").height()) {
+			jQuery("#jboil-sidebar").css("position", "static");
 			jQuery("#jboil-sidebar>div").affix({
 				offset: {
 					bottom: 250
