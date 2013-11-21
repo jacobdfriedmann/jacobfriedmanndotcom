@@ -211,6 +211,7 @@ var jboil = window.jboil = {
 		var className = arguments[0];
 		var context = this;
 		jQuery(className).click( function(e) {
+
 			e.preventDefault();
 			var urlPath = jQuery(this).attr("href");
 			var url = urlPath + " #jboil-page-wrapper";
@@ -234,6 +235,7 @@ var jboil = window.jboil = {
 				jQuery(".current-menu-item, .current-menu-parent").removeClass("current-menu-item").removeClass("current-menu-parent");
 				jQuery("#"+menupage).addClass("current-menu-item");
 				window.history.pushState({"html":response,"pageTitle":title},"", urlPath);
+				jQuery(".jboil-menu-page-title").stop(false, true);
 				jQuery.proxy(jboil.init(true), jboil);
 				jQuery(".jboil-menu-page-title").animate({"opacity":1}, 1000);
 				window.scrollTo(0);
