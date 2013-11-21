@@ -9,6 +9,8 @@ Author URI: http://www.hawkix.net
 License: GPLv2 or newer.
 */
 
+if (PRODUCTION) {
+
 if( !defined('PG4WP_ROOT'))
 {
 // You can choose the driver to load here
@@ -34,3 +36,5 @@ else
 // Here happens all the magic
 require_once( PG4WP_ROOT.'/core.php');
 } // Protection against multiple loading
+
+}

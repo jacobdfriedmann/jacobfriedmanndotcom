@@ -9,6 +9,7 @@
 * This file does all the initialisation tasks
 */
 
+if (PRODUCTION) {
 // Logs are put in the pg4wp directory
 define( 'PG4WP_LOG', PG4WP_ROOT.'/logs/');
 // Check if the logs directory is needed and exists or create it if possible
@@ -34,3 +35,4 @@ eval( str_replace( array_keys($replaces), array_values($replaces), file_get_cont
 // Create wpdb object if not already done
 if (! isset($wpdb))
 	$wpdb = new wpdb2( DB_USER, DB_PASSWORD, DB_NAME, DB_HOST );
+}

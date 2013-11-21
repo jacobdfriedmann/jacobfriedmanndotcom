@@ -81,7 +81,7 @@ var jboil = window.jboil = {
 		return className;
 	},
 	
-	crossedBreakpoint: function () {
+	crossedBreakpoint: function () { // Determine if window has crossed a Bootstrap breakpoint
 		return (this.deviceType == "desktop" && this.screenSize != this.getScreenSize);
 	},
 	
