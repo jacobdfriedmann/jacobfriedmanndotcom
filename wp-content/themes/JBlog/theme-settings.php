@@ -20,7 +20,7 @@
 	<label for="tagline">Footer Tagline: </label><input type="text" name="tagline" value="<?php echo get_option('tagline'); ?>" /><br>
 	
 	<h3>Social Media Links</h3>
-	<label for="facebook">facebook.com/</label><input type="text" name="facebook" value="<?php echo get_option('facebook'); ?>" /><br>
+	<label for="github">github.com/</label><input type="text" name="github" value="<?php echo get_option('github'); ?>" /><br>
 	<label for="twitter">twitter.com/</label><input type="text" name="twitter" value="<?php echo get_option('twitter'); ?>" /><br>
 	<label for="linkedin">linkedin.com/</label><input type="text" name="linkedin" value="<?php echo get_option('linkedin'); ?>" /><br>
     
