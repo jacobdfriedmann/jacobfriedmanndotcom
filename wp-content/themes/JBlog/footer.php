@@ -14,7 +14,7 @@
 			<div id="jboil-social-media-icons" class="row">
 				<div class="col-md-2 col-xs-4">
 					<?php if (get_option('github')) { ?>	
-						<a href="http://github.com/<?php echo get_option('facebook'); ?>" target="_blank"><div class="fa fa-github"></div></a>
+						<a href="http://github.com/<?php echo get_option('github'); ?>" target="_blank"><div class="fa fa-github"></div></a>
 					<?php } ?>
 				</div>
 				<div class="col-md-2 col-xs-4">
