@@ -2,4 +2,3 @@ jacobfriedmanndotcom
 ====================
 
 JacobFriedmann.com
-
