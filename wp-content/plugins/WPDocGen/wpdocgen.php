@@ -53,27 +53,27 @@ function wpdocgen_install() {
 
 	
 	// Create Databases
-	$sql = "CREATE TABLE $wpdocgen_files (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT,
-	  name tinytext NOT NULL,
-	  description text,
-	  type tinytext NOT NULL,
-	  UNIQUE KEY id (id)
+	$sql = "CREATE TABLE `$wpdocgen_files` (
+	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+	  `name` tinytext NOT NULL,
+	  `description` text,
+	  `type` tinytext NOT NULL,
+	  UNIQUE KEY  `id` (`id`)
 	);
-	CREATE TABLE $wpdocgen_sections (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT,
-	  name tinytext NOT NULL,
-	  description text,
-	  file_id mediumint(9) NOT NULL,
-	  UNIQUE KEY id (id)
+	CREATE TABLE `$wpdocgen_sections` (
+	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+	  `name` tinytext NOT NULL,
+	  `description` text,
+	  `file_id` mediumint(9) NOT NULL,
+	  UNIQUE KEY  `id` (`id`)
 	);
-	CREATE TABLE $wpdocgen_section_meta (
-	  id mediumint(9) NOT NULL AUTO_INCREMENT,
-	  meta_key tinytext NOT NULL,
-	  value text NOT NULL,
-	  type tinytext NOT NULL,
-	  for_id mediumint(9) NOT NULL,
-	  UNIQUE KEY id (id)
+	CREATE TABLE `$wpdocgen_section_meta` (
+	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+	  `meta_key` tinytext NOT NULL,
+	  `value` text NOT NULL,
+	  `type` tinytext NOT NULL,
+	  `for_id` mediumint(9) NOT NULL,
+	  UNIQUE KEY  `id` (`id`)
 	);";
 
 	// Uses dbDelta to update databases
