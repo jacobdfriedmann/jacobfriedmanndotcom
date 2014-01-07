@@ -3,18 +3,19 @@
  * The template for displaying Search Results pages.
  *
  * @package WordPress
- * @subpackage JBoil
+ * @subpackage JBlog
+ * @since JBlog 1.0
  * 
  */
 
 get_header(); ?>
 
-		<div id="jboil-page-wrapper" class="search row">
-			<div id="jboil-content" role="main" class="col-md-8">
+		<div id="jblog-page-wrapper" class="search row">
+			<div id="jblog-content" role="main" class="col-md-8">
 
 			<?php if ( have_posts() ) : ?>
 				<header>
-					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'jboil' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'jblog' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 				</header>
 				<?php
 				/* Run the loop for the search to output the results.
@@ -25,9 +26,9 @@ get_header(); ?>
 			?>
 			<?php else : ?>
 				<article id="post-0" class="post no-results not-found">
-					<h2 class="entry-title"><?php _e( 'Nothing Found', 'jboil' ); ?></h2>
+					<h2 class="entry-title"><?php _e( 'Nothing Found', 'jblog' ); ?></h2>
 					<div class="entry-content">
-						<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'jboil' ); ?></p>
+						<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'jblog' ); ?></p>
 						<?php get_search_form(); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-0 -->

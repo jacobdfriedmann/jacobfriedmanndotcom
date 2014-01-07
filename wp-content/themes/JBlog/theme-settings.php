@@ -1,3 +1,16 @@
+<?php 
+
+/**
+ * The template for displaying the Theme Settings admin page.
+ *
+ * @package WordPress
+ * @subpackage JBlog
+ * @since JBlog 1.0
+ * 
+ */
+
+?>
+
 <div class="wrap">
     <?php screen_icon('themes'); ?> <h2>Theme Settings</h2>
     <form method="POST" action="">

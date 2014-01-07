@@ -8,13 +8,14 @@
  * different template.
  *
  * @package WordPress
- * @subpackage JBoil
+ * @subpackage JBlog
+ * @since JBlog 1.0
  * 
  */
 
 get_header(); ?>
-		<div id="jboil-page-wrapper" class="row pages">
-			<div id="jboil-content" role="main" class="col-md-8">
+		<div id="jblog-page-wrapper" class="row pages">
+			<div id="jblog-content" role="main" class="col-md-8">
 
 				<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
@@ -22,8 +23,8 @@ get_header(); ?>
 
 									<div class="entry-content">
 										<?php the_content(); ?>
-										<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'jboil' ), 'after' => '</div>' ) ); ?>
-										<?php edit_post_link( __( 'Edit', 'jboil' ), '<span class="edit-link">', '</span>' ); ?>
+										<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'jblog' ), 'after' => '</div>' ) ); ?>
+										<?php edit_post_link( __( 'Edit', 'jblog' ), '<span class="edit-link">', '</span>' ); ?>
 									</div><!-- .entry-content -->
 								</article><!-- #post-## -->
 

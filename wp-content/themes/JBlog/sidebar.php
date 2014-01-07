@@ -3,12 +3,13 @@
  * The Sidebar containing the primary and secondary widget areas.
  *
  * @package WordPress
- * @subpackage JBoil
+ * @subpackage JBlog
+ * @since JBlog 1.0
  * 
  */
 ?>
 
-<div id="jboil-sidebar" class="widget-area col-md-4" role="complementary">
+<div id="jblog-sidebar" class="widget-area col-md-4" role="complementary">
 	<div>
 		<ul>
 		<?php
@@ -20,11 +21,11 @@
 		 ?>
 
 		<?php if (dynamic_sidebar( 'primary-widget-area' )) : else :   ?>
-			<li id="search" class="jboil-widget-container widget_search">
+			<li id="search" class="jblog-widget-container widget_search">
 				<?php get_search_form(); ?>
 			</li>
 
-			<?php the_widget("JBoil_RecentPosts_Widget"); ?>
+			<?php the_widget("jblog_RecentPosts_Widget"); ?>
 		<?php endif; ?>
 		
 		</ul>

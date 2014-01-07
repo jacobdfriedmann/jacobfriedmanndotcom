@@ -3,17 +3,18 @@
  * The template for displaying Tag Archive pages.
  *
  * @package WordPress
- * @subpackage JBoil
+ * @subpackage JBlog
+ * @since JBlog 1.0
  * 
  */
 
 get_header(); ?>
 
-		<div id="jboil-page-wrapper" class="row">
-			<div id="jboil-content" role="main" class="col-md-8">
+		<div id="jblog-page-wrapper" class="row">
+			<div id="jblog-content" role="main" class="col-md-8">
                 <header>
-    				<h1 class="jboil-page-title"><?php
-    					printf( __( 'Tag Archives: %s', 'jboil' ), '<span>' . single_tag_title( '', false ) . '</span>' );
+    				<h1 class="jblog-page-title"><?php
+    					printf( __( 'Tag Archives: %s', 'jblog' ), '<span>' . single_tag_title( '', false ) . '</span>' );
     				?></h1>
                 </header>
 

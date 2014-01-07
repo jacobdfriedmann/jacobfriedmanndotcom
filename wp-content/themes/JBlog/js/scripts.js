@@ -1,4 +1,10 @@
 
+/**
+ * Functionality specific to JBlog.
+ *
+ * Provides helper functions to enhance the theme experience.
+ */
+
 var jboil = window.jboil = {
 	
 	page: 2, // Next page of posts to be queried 

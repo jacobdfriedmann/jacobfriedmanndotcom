@@ -9,7 +9,8 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage JBoil
+ * @subpackage JBlog
+ * @since JBlog 1.0
  * 
  */
 

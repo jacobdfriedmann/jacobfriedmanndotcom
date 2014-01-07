@@ -2,16 +2,21 @@
 
 /**
  * The template for displaying the footer.
+ *
+ * @package WordPress
+ * @subpackage JBlog
+ * @since JBlog 1.0
+ * 
  */
 
 ?>	
 </div> <!-- Close content wrapper -->
-<div id="jboil-curtain">
+<div id="jblog-curtain">
 </div>
-	<div id="jboil-footer-widget-wrapper">
+	<div id="jblog-footer-widget-wrapper">
 		
-		<div id="jboil-footer-widget-container" class="container">
-			<div id="jboil-social-media-icons" class="row">
+		<div id="jblog-footer-widget-container" class="container">
+			<div id="jblog-social-media-icons" class="row">
 				<div class="col-md-2 col-xs-4">
 					<?php if (get_option('github')) { ?>	
 						<a href="http://github.com/<?php echo get_option('github'); ?>" target="_blank"><div class="fa fa-github"></div></a>
@@ -29,21 +34,21 @@
 				</div>
 			
 
-				<div id="jboil-tagline-area" class="col-md-6 col-sm-12">
-					<span id="jboil-tagline"><?php echo (get_option('tagline')) ? get_option('tagline') : bloginfo('description'); ?></span>
+				<div id="jblog-tagline-area" class="col-md-6 col-sm-12">
+					<span id="jblog-tagline"><?php echo (get_option('tagline')) ? get_option('tagline') : bloginfo('description'); ?></span>
 				</div>
 			</div>
 		</div>
 
 	</div>
 
-	<div id="jboil-footer-wrapper" >
-		<div id="jboil-footer-container" class="container">
+	<div id="jblog-footer-wrapper" >
+		<div id="jblog-footer-container" class="container">
 			<div class="row">
-				<div id="jboil-copyright" class="col-md-6">
+				<div id="jblog-copyright" class="col-md-6">
 					<?php echo get_option('copyright_text'); ?>
 				</div>
-				<div id="jboil-site-info" class="col-md-6">
+				<div id="jblog-site-info" class="col-md-6">
 					Site designed and created by <a href="http://jacobfriedmann.com" target="_blank">Jacob Friedmann</a>
 				</div>
 			</div>
