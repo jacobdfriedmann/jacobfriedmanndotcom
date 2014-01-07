@@ -119,8 +119,8 @@ function wpdocgen_analyze_css($file) {
 		$section_description = substr($section_description, strlen($section_title) + 4, -1);
 		$section_description = trim($section_description);
 		$section_title = trim(substr($section_title, strlen($section_number)));
-		if (explode(".", $section_number)[1] != "0")
-			$section_parent = explode(".", $section_number)[0].".0";
+		// if (explode(".", $section_number)[1] != "0")
+		// 	$section_parent = explode(".", $section_number)[0].".0";
 		$wpdb->insert($wpdocgen_sections, array("name"=> $section_title, "description" => $section_description, "file_id"=>$file_id));
 		$section_id = $wpdb->insert_id;
 		$wpdb->insert($wpdocgen_section_meta, array("meta_key"=> "number", "value" => $section_number, "for_id" => $section_id, "type" => "section"));
