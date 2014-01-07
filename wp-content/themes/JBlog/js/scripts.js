@@ -5,7 +5,7 @@
  * Provides helper functions to enhance the theme experience.
  */
 
-var jboil = window.jboil = {
+var jblog = window.jblog = {
 	
 	page: 2, // Next page of posts to be queried 
 	
@@ -15,9 +15,9 @@ var jboil = window.jboil = {
 	
 	pageType: "", // index, page, post, archive
 	
-	postClassName: "", // .jboil-post-block-content, .jboil-archive-detail
+	postClassName: "", // .jblog-post-block-content, .jblog-archive-detail
 	
-	excerptClassName: "", // .jboil-entry, .jboil-archive-excerpt
+	excerptClassName: "", // .jblog-entry, .jblog-archive-excerpt
 	
 	getScreenSize: function () { // Determine current screen size
 		var size;
@@ -48,7 +48,7 @@ var jboil = window.jboil = {
 	},
 	
 	getPageType: function () { // Determine what kind of wordpress page we are on
-		var body = jQuery("#jboil-page-wrapper");
+		var body = jQuery("#jblog-page-wrapper");
 		var page;
 		if (body.hasClass("index")) {
 			page = "index";
@@ -68,10 +68,10 @@ var jboil = window.jboil = {
 	getPostClassName: function () { // Determine the post's content class name
 		var className;
 		if (this.pageType == "archive") {
-			className = ".jboil-archive-detail";
+			className = ".jblog-archive-detail";
 		}
 		else if (this.pageType == "index") {
-			className = ".jboil-post-block-content";
+			className = ".jblog-post-block-content";
 		}
 		return className;
 	},
@@ -79,10 +79,10 @@ var jboil = window.jboil = {
 	getExcerptClassName: function () { // Determine the post's content class name
 		var className;
 		if (this.pageType == "archive") {
-			className = ".jboil-archive-excerpt";
+			className = ".jblog-archive-excerpt";
 		}
 		else if (this.pageType == "index") {
-			className = ".jboil-post-block-excerpt";
+			className = ".jblog-post-block-excerpt";
 		}
 		return className;
 	},
@@ -97,15 +97,15 @@ var jboil = window.jboil = {
 			type: "GET",
 			url: "/wp-admin/admin-ajax.php",
 			dataType: 'html',
-			data: ({ action: 'jboil_load_more', page: this.page }),
+			data: ({ action: 'jblog_load_more', page: this.page }),
 			success: function(data){
 				var newdiv = jQuery("<div style='display:none'>"+ data + "</div>");
-				jQuery('#jboil-page-wrapper').append(newdiv);
+				jQuery('#jblog-page-wrapper').append(newdiv);
 				jQuery(newdiv).fadeIn("slow");
 				context.refresh();
-				jQuery(".jboil-imgliquid").filter(function (index) { return jQuery(this).css('visibility') == 'hidden' }).imgLiquid().css("visibility", "visible").hide().fadeIn("slow");
-				if (jQuery(data).filter(".jboil-post-block").length < 9) {
-					jQuery("#jboil-load-more").hide();
+				jQuery(".jblog-imgliquid").filter(function (index) { return jQuery(this).css('visibility') == 'hidden' }).imgLiquid().css("visibility", "visible").hide().fadeIn("slow");
+				if (jQuery(data).filter(".jblog-post-block").length < 9) {
+					jQuery("#jblog-load-more").hide();
 				}
 				context.page++;
 			}
@@ -163,26 +163,26 @@ var jboil = window.jboil = {
 					rgb[i] = parseInt(rgb[i]); 
 				}
 				if (context.rgb2hsv(rgb[0], rgb[1], rgb[2]).v < 50) {
-					jQuery(this).addClass("jboil-white");
+					jQuery(this).addClass("jblog-white");
 				} 
 				else {
-					jQuery(this).addClass("jboil-black");
+					jQuery(this).addClass("jblog-black");
 				}
 			});
 		}
 	},
 	
 	removeBlockTextColor: function() {
-		if (this.postClassName == ".jboil-archive-detail") {
-			jQuery(".jboil-white").removeClass("jboil-white");
-			jQuery(".jboil-black").removeClass("jboil-black");
+		if (this.postClassName == ".jblog-archive-detail") {
+			jQuery(".jblog-white").removeClass("jblog-white");
+			jQuery(".jblog-black").removeClass("jblog-black");
 		}
 	},
 	
 	affixSidebar: function() {
-		if (jQuery("#jboil-content").height() >= jQuery("#jboil-sidebar>div").height()) {
-			jQuery("#jboil-sidebar").css("position", "static");
-			jQuery("#jboil-sidebar>div").affix({
+		if (jQuery("#jblog-content").height() >= jQuery("#jblog-sidebar>div").height()) {
+			jQuery("#jblog-sidebar").css("position", "static");
+			jQuery("#jblog-sidebar>div").affix({
 				offset: {
 					bottom: 250
 				}
@@ -219,24 +219,24 @@ var jboil = window.jboil = {
 		jQuery(className).click( function(e) {
 			e.preventDefault();
 			var urlPath = jQuery(this).attr("href");
-			jboil.doAjax(urlPath);
+			jblog.doAjax(urlPath);
 		});
 	},
 
 	doAjax: function() {
 		var urlPath = arguments[0];
-		var url = urlPath + " #jboil-page-wrapper";
-		var curtain = jQuery("#jboil-curtain");
-		var content = jQuery("#jboil-content-wrapper");
+		var url = urlPath + " #jblog-page-wrapper";
+		var curtain = jQuery("#jblog-curtain");
+		var content = jQuery("#jblog-content-wrapper");
 		curtain
 			.css("top", content.position().top)
 			.css("left", content.position().left)
 			.width(content.width())
 			.height(content.height());
 		content.animate({"opacity": 0}, 600, function () { curtain.show(); } );
-		if (jboil.screenSize == "xs") jQuery("#jboil-main-navigation-list").collapse("hide");
-		jQuery(".jboil-menu-page-title").animate({"opacity":0}, 1000);
-		jQuery("#jboil-content-wrapper").load(url, function(response) {
+		if (jblog.screenSize == "xs") jQuery("#jblog-main-navigation-list").collapse("hide");
+		jQuery(".jblog-menu-page-title").animate({"opacity":0}, 1000);
+		jQuery("#jblog-content-wrapper").load(url, function(response) {
 			var title = jQuery(response).find("title").text();
 			var menupage = jQuery(response).find(".current-menu-item").attr("id");
 			if (!menupage) {
@@ -246,36 +246,36 @@ var jboil = window.jboil = {
 			jQuery(".current-menu-item, .current-menu-parent").removeClass("current-menu-item").removeClass("current-menu-parent");
 			jQuery("#"+menupage).addClass("current-menu-item");
 			window.history.pushState({"html":response,"pageTitle":title},"", urlPath);
-			jQuery(".jboil-menu-page-title").stop(false, true);
-			jQuery.proxy(jboil.init(true), jboil);
-			jQuery(".jboil-menu-page-title").animate({"opacity":1}, 1000);
+			jQuery(".jblog-menu-page-title").stop(false, true);
+			jQuery.proxy(jblog.init(true), jblog);
+			jQuery(".jblog-menu-page-title").animate({"opacity":1}, 1000);
 			window.scrollTo(0);
 			content.stop().animate({"opacity":1}, 300, function () { curtain.hide(); });
-			jboil.affixSidebar();
+			jblog.affixSidebar();
 		});
 	},
 	
 	makePostsMobile: function () {
 		if (this.pageType == "index") {
-			jQuery(".jboil-post-block-content").css("opacity", 1).css("height", "auto").css("padding-bottom", 0);
-			jQuery(".jboil-post-block-title").css("display", "inline-block").css("margin-top", "7px");
-			jQuery(".jboil-post-block-excerpt, .jboil-post-block-category").css("display", "none");
-			jQuery(".jboil-index-thumb").each( function () {
-				jQuery(this).css("top", "-" + jQuery(this).siblings(".jboil-post-block-content")[0].clientHeight + "px");
+			jQuery(".jblog-post-block-content").css("opacity", 1).css("height", "auto").css("padding-bottom", 0);
+			jQuery(".jblog-post-block-title").css("display", "inline-block").css("margin-top", "7px");
+			jQuery(".jblog-post-block-excerpt, .jblog-post-block-category").css("display", "none");
+			jQuery(".jblog-index-thumb").each( function () {
+				jQuery(this).css("top", "-" + jQuery(this).siblings(".jblog-post-block-content")[0].clientHeight + "px");
 			});
 		}
 		else if (this.pageType == "archive" && this.screenSize == "xs") {
-			jQuery(".jboil-archive-detail").css("opacity", 1).css("padding-bottom", 0).css("height", "auto");
-			jQuery(".jboil-archive-detail h2").css("display", "inline-block").css("margin-top", "7px");
-			jQuery(".jboil-entry-meta, .jboil-archive-excerpt, .jboil-archive-utility").css("display", "none");
-			jQuery(".jboil-archive-thumb").each( function () {
-				jQuery(this).css("top", "-" + jQuery(this).siblings(".jboil-archive-detail")[0].clientHeight + "px");
+			jQuery(".jblog-archive-detail").css("opacity", 1).css("padding-bottom", 0).css("height", "auto");
+			jQuery(".jblog-archive-detail h2").css("display", "inline-block").css("margin-top", "7px");
+			jQuery(".jblog-entry-meta, .jblog-archive-excerpt, .jblog-archive-utility").css("display", "none");
+			jQuery(".jblog-archive-thumb").each( function () {
+				jQuery(this).css("top", "-" + jQuery(this).siblings(".jblog-archive-detail")[0].clientHeight + "px");
 			});
 		}
 	},
 	
 	fixBodyPadding: function() {
-		jQuery("body").css("padding-top", jQuery("#jboil-header-wrapper").height() -jQuery("body").offset().top -10);
+		jQuery("body").css("padding-top", jQuery("#jblog-header-wrapper").height() -jQuery("body").offset().top -10);
 	},
 	
 	init: function (ajax) { // initialize a page
@@ -286,7 +286,7 @@ var jboil = window.jboil = {
 			jQuery("#wpadminbar").hide();
 			
 			// Make top navigation ajax calls
-			this.ajaxify(".menu-item a, a.navbar-brand, #jboil-logo-container>a");
+			this.ajaxify(".menu-item a, a.navbar-brand, #jblog-logo-container>a");
 			
 			// Fix Sidebar
 			this.affixSidebar();
@@ -294,11 +294,11 @@ var jboil = window.jboil = {
 		
 		this.fixBodyPadding();
 		
-		this.ajaxify(".widget_jboil_recentposts_widget a, .jboil-entry-meta a, .jboil-nav-below a, .jboil-entry-utility a, .jboil-archive-detail a");
+		this.ajaxify(".widget_jblog_recentposts_widget a, .jblog-entry-meta a, .jblog-nav-below a, .jblog-entry-utility a, .jblog-archive-detail a");
 			
 		// Make images responsive
-		jQuery('.jboil-imgliquid').imgLiquid();
-		jQuery(".jboil-imgliquid").css("visibility", "visible").hide().fadeIn("slow");
+		jQuery('.jblog-imgliquid').imgLiquid();
+		jQuery(".jblog-imgliquid").css("visibility", "visible").hide().fadeIn("slow");
 		
 		// Set the page title for small screens
 		var menupage = jQuery(".current-menu-item");
@@ -307,8 +307,8 @@ var jboil = window.jboil = {
 		}
 		var menupagetitle = menupage.text();
 		var menupagecolor = menupage.find("a").css("color");
-		jQuery(".jboil-menu-page-title").text(menupagetitle);
-		jQuery(".jboil-menu-page-title").css("color", menupagecolor);
+		jQuery(".jblog-menu-page-title").text(menupagetitle);
+		jQuery(".jblog-menu-page-title").css("color", menupagecolor);
 		
 		// Initialize instance variables
 		this.screenSize = this.getScreenSize();
@@ -322,20 +322,20 @@ var jboil = window.jboil = {
 			// Set up comment form
 			jQuery(".form-submit").find("input[type=submit]").addClass("form-control btn btn-default");
 			jQuery(window).resize(function () {
-				jboil.fixBodyPadding();
+				jblog.fixBodyPadding();
 			});
 		}
 		// Logic for static page
 		else if (this.pageType == "page") {
 			jQuery(window).resize(function () {
-				jboil.fixBodyPadding();
+				jblog.fixBodyPadding();
 			});
 		}
 		// Logic for index
 		else if (this.pageType == "index") {
 			this.refresh();
 			var context = this;
-			jQuery("#jboil-load-more").click(function() {
+			jQuery("#jblog-load-more").click(function() {
 				context.loadMorePosts();
 			});
 			jQuery(window).resize(function () {
@@ -356,7 +356,7 @@ var jboil = window.jboil = {
 			});
 		}
 		// Fade in content for it is loaded
-		jQuery("#jboil-content").css("visibility", "visible").hide().fadeIn("slow");
+		jQuery("#jblog-content").css("visibility", "visible").hide().fadeIn("slow");
 	},
 	
 	refresh: function() {
@@ -411,5 +411,5 @@ var jboil = window.jboil = {
 }
 
 jQuery(function() {
-	jboil.init();
+	jblog.init();
 });
