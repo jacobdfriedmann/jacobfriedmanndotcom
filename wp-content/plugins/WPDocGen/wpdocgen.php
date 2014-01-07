@@ -78,7 +78,7 @@ function wpdocgen_install() {
 
 	// Uses dbDelta to update databases
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql );
+	wpdb->query($sql);
 
 	add_option( "wpdocgen_db_version", $wpdocgen_db_version );
 	add_option("wpdocgen_theme", "na");
