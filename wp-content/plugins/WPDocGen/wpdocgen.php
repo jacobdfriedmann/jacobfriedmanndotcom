@@ -58,14 +58,14 @@ function wpdocgen_install() {
 	  `name` tinytext NOT NULL,
 	  `description` text,
 	  `type` tinytext NOT NULL,
-	  UNIQUE KEY  `id` (`id`)
+	  PRIMARY KEY  (`id`)
 	);
 	CREATE TABLE `$wpdocgen_sections` (
 	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
 	  `name` tinytext NOT NULL,
 	  `description` text,
 	  `file_id` mediumint(9) NOT NULL,
-	  UNIQUE KEY  `id` (`id`)
+	  PRIMARY KEY  (`id`)
 	);
 	CREATE TABLE `$wpdocgen_section_meta` (
 	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -73,7 +73,7 @@ function wpdocgen_install() {
 	  `value` text NOT NULL,
 	  `type` tinytext NOT NULL,
 	  `for_id` mediumint(9) NOT NULL,
-	  UNIQUE KEY  `id` (`id`)
+	  PRIMARY KEY  (`id`)
 	);";
 
 	// Uses dbDelta to update databases
