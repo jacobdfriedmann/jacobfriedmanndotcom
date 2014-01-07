@@ -25,7 +25,7 @@
 				<?php get_search_form(); ?>
 			</li>
 
-			<?php the_widget("jblog_RecentPosts_Widget"); ?>
+			<?php the_widget("JBlog_RecentPosts_Widget"); ?>
 		<?php endif; ?>
 		
 		</ul>
