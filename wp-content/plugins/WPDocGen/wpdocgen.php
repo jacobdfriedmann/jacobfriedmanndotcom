@@ -53,28 +53,9 @@ function wpdocgen_install() {
 
 	
 	// Create Databases
-	$sql = "CREATE TABLE `$wpdocgen_files` (
-	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-	  `name` tinytext NOT NULL,
-	  `description` text,
-	  `type` tinytext NOT NULL,
-	  PRIMARY KEY  (`id`)
-	);
-	CREATE TABLE `$wpdocgen_sections` (
-	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-	  `name` tinytext NOT NULL,
-	  `description` text,
-	  `file_id` mediumint(9) NOT NULL,
-	  PRIMARY KEY  (`id`)
-	);
-	CREATE TABLE `$wpdocgen_section_meta` (
-	  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-	  `meta_key` tinytext NOT NULL,
-	  `value` text NOT NULL,
-	  `type` tinytext NOT NULL,
-	  `for_id` mediumint(9) NOT NULL,
-	  PRIMARY KEY  (`id`)
-	);";
+	$sql = "CREATE TABLE $wpdocgen_files ( id mediumint(9) NOT NULL AUTO_INCREMENT, name tinytext NOT NULL, description text, TYPE tinytext NOT NULL, UNIQUE KEY id (id) );
+CREATE TABLE $wpdocgen_sections ( id mediumint(9) NOT NULL AUTO_INCREMENT, name tinytext NOT NULL, description text, file_id mediumint(9) NOT NULL, UNIQUE KEY id (id) );
+CREATE TABLE $wpdocgen_section_meta ( id mediumint(9) NOT NULL AUTO_INCREMENT, meta_key tinytext NOT NULL, value text NOT NULL, TYPE tinytext NOT NULL, for_id mediumint(9) NOT NULL, UNIQUE KEY id (id) );";
 
 	// Uses dbDelta to update databases
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -82,6 +63,7 @@ function wpdocgen_install() {
 
 	add_option( "wpdocgen_db_version", $wpdocgen_db_version );
 	add_option("wpdocgen_theme", "na");
+	add_option("wpdocgen_error", $wpdb->last_error);
 }
 register_activation_hook(__FILE__, 'wpdocgen_install');
 
