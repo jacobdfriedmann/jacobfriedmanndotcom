@@ -2,3 +2,4 @@ wp-content/uploads/
 bin/
 wp-content/plugins/bwp-minify/cache/
 .env
+*.dump

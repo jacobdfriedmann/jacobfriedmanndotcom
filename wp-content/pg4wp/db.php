@@ -9,7 +9,6 @@ Author URI: http://www.hawkix.net
 License: GPLv2 or newer.
 */
 
-if (PRODUCTION) {
 
 if( !defined('PG4WP_ROOT'))
 {
@@ -36,5 +35,3 @@ else
 // Here happens all the magic
 require_once( PG4WP_ROOT.'/core.php');
 } // Protection against multiple loading
-
-}
