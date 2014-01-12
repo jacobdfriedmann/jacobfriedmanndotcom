@@ -3,3 +3,4 @@ bin/
 wp-content/plugins/bwp-minify/cache/
 .env
 *.dump
+*.DS_Store
