@@ -6124,7 +6124,8 @@ window.Raphael.vml && function (R) {
 function updateMap() {
     jQuery.get('http://mighty-beyond-7276.herokuapp.com/', function (data){
         jQuery("#map").remove();
-        jQuery("#jblog-us-map").prepend('<div id="map" style="width: 600px; height: 430px; border: none; margin: auto"></div>');
+        var now = new Date();
+        jQuery("#jblog-us-map").prepend('<div id="map" style="width: 600px; height: 430px; border: none; margin: auto"></div><p>Updated ' + now + '. <span style="background-color:(255, 0, 0)">Negative </span><span style="background-color:(0, 255, 0)">Positive.</span>');
         var styles = {}
         for (state in data) {
             styles[state] = {fill: data[state]}
