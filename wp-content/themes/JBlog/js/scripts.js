@@ -227,16 +227,6 @@ var jblog = window.jblog = {
 
 	doAjax: function() {
 		var urlPath = arguments[0];
-		if (urlPath.indexOf("twitter-mood-map") != -1) {
-			if (this.usmap) {
-				jQuery("#jblog-post-image-container").hide();
-    			updateMap();
-			}
-			else {
-				this.usmap = true;
-				jQuery.getScript("/wp-content/themes/JBlog/js/usmap.js");
-			}
-		}
 		var url = urlPath + " #jblog-page-wrapper";
 		var curtain = jQuery("#jblog-curtain");
 		var content = jQuery("#jblog-content-wrapper");
@@ -262,6 +252,16 @@ var jblog = window.jblog = {
 			jQuery.proxy(jblog.init(true), jblog);
 			jQuery(".jblog-menu-page-title").animate({"opacity":1}, 1000);
 			window.scrollTo(0);
+			if (urlPath.indexOf("twitter-mood-map") != -1) {
+				if (jblog.usmap) {
+					jQuery("#jblog-post-image-container").hide();
+	    			updateMap();
+				}
+				else {
+					jblog.usmap = true;
+					jQuery.getScript("/wp-content/themes/JBlog/js/usmap.js");
+				}
+			}
 			content.stop().animate({"opacity":1}, 300, function () { curtain.hide(); });
 			jblog.affixSidebar();
 		});
