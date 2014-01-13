@@ -18,6 +18,8 @@ var jblog = window.jblog = {
 	postClassName: "", // .jblog-post-block-content, .jblog-archive-detail
 	
 	excerptClassName: "", // .jblog-entry, .jblog-archive-excerpt
+
+	usmap: false,
 	
 	getScreenSize: function () { // Determine current screen size
 		var size;
@@ -225,6 +227,16 @@ var jblog = window.jblog = {
 
 	doAjax: function() {
 		var urlPath = arguments[0];
+		if (urlPath.indexOf("twitter-mood-map") != -1) {
+			if (this.usmap) {
+				jQuery("#jblog-post-image-container").hide();
+    			updateMap();
+			}
+			else {
+				this.usmap = true;
+				jQuery.getScript("/wp-content/themes/JBlog/js/usmap.js");
+			}
+		}
 		var url = urlPath + " #jblog-page-wrapper";
 		var curtain = jQuery("#jblog-curtain");
 		var content = jQuery("#jblog-content-wrapper");
