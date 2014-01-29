@@ -239,7 +239,7 @@ var jblog = window.jblog = {
 		if (jblog.screenSize == "xs") jQuery("#jblog-main-navigation-list").collapse("hide");
 		jQuery(".jblog-menu-page-title").animate({"opacity":0}, 1000);
 		jQuery("#jblog-content-wrapper").load(url, function(response) {
-			var title = jQuery(response).find("article h1").text() + " | Jacob Friedmann";
+			var title = jQuery(response).find("#jblog-hidden-page-title").text();
 			var menupage = jQuery(response).find(".current-menu-item").attr("id");
 			if (!menupage) {
 				menupage = jQuery(response).find(".current-menu-parent").attr("id");
