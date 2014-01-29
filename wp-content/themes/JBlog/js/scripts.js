@@ -239,7 +239,7 @@ var jblog = window.jblog = {
 		if (jblog.screenSize == "xs") jQuery("#jblog-main-navigation-list").collapse("hide");
 		jQuery(".jblog-menu-page-title").animate({"opacity":0}, 1000);
 		jQuery("#jblog-content-wrapper").load(url, function(response) {
-			var title = jQuery(response).find("title").text();
+			var title = jQuery(response).find("article h1").text() + " | Jacob Friedmann";
 			var menupage = jQuery(response).find(".current-menu-item").attr("id");
 			if (!menupage) {
 				menupage = jQuery(response).find(".current-menu-parent").attr("id");
@@ -248,6 +248,8 @@ var jblog = window.jblog = {
 			jQuery(".current-menu-item, .current-menu-parent").removeClass("current-menu-item").removeClass("current-menu-parent");
 			jQuery("#"+menupage).addClass("current-menu-item");
 			window.history.pushState({"html":response,"pageTitle":title},"", urlPath);
+			addthis_share['url'] = urlPath;
+			addthis_share['title'] = title;
 			jQuery(".jblog-menu-page-title").stop(false, true);
 			jQuery.proxy(jblog.init(true), jblog);
 			jQuery(".jblog-menu-page-title").animate({"opacity":1}, 1000);

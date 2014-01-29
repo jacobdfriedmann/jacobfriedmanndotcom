@@ -1,1 +1,1 @@
-web: php -S localhost:5000 -t .
+web: /Applications/MAMP/bin/php/php5.5.3/bin/php -S localhost:5000 -t .
