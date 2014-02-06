@@ -5,7 +5,6 @@ jQuery(document).ready(function () {
 	  'position' : 'left',
 	  'numPreferredServices' : 6
 	},  
-	'whatsnext' : {},  
-	'recommended' : {} 
+	'whatsnext' : {}
 	});
 });
