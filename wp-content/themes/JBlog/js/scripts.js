@@ -253,7 +253,7 @@ var jblog = window.jblog = {
 			jQuery(".jblog-menu-page-title").stop(false, true);
 			jQuery.proxy(jblog.init(true), jblog);
 			jQuery(".jblog-menu-page-title").animate({"opacity":1}, 1000);
-			window.scrollTo(0);
+			window.scrollTo(0, 0);
 			if (urlPath.indexOf("twitter-mood-map") != -1) {
 				if (jblog.usmap) {
 					jQuery("#jblog-post-image-container").hide();
